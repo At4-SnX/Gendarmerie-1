@@ -24,9 +24,9 @@ const defaults = {
   supportTtsLang: process.env.SUPPORT_TTS_LANG || "fr",
   botStreamName: process.env.BOT_STREAM_NAME || "Gendarmerie",
   botStatusText: process.env.BOT_STATUS_TEXT || "Gendarmerie Nationale RP",
-  grokModel: process.env.GROK_MODEL || "grok-4",
-  grokSystemPrompt:
-    process.env.GROK_SYSTEM_PROMPT ||
+  groqModel: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
+  groqSystemPrompt:
+    process.env.GROQ_SYSTEM_PROMPT ||
     "Tu es l'assistant officiel de la Gendarmerie Nationale RP. Reponds de facon professionnelle, courte et utile. Reste dans le cadre RP.",
   cardTemplate: process.env.CARD_TEMPLATE || "assets/gendarmerie-template.png"
 };
@@ -49,7 +49,7 @@ function getConfig() {
     discordToken: process.env.DISCORD_TOKEN || "",
     discordClientId: process.env.DISCORD_CLIENT_ID || "",
     discordGuildId: process.env.DISCORD_GUILD_ID || "",
-    grokApiKey: process.env.GROK_API_KEY || "",
+    groqApiKey: process.env.GROQ_API_KEY || "",
     rootDir
   };
 }

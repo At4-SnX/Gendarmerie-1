@@ -25,7 +25,7 @@ const commands = [
               { name: "Message d'arrivee", value: "welcomeMessage" },
               { name: "Message de depart", value: "goodbyeMessage" },
               { name: "Message vocal support", value: "supportTtsMessage" },
-              { name: "Instruction systeme IA", value: "grokSystemPrompt" }
+              { name: "Instruction systeme IA", value: "groqSystemPrompt" }
             )
         )
         .addStringOption((option) =>

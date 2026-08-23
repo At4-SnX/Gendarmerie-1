@@ -4,7 +4,7 @@ Bot Discord professionnel pour serveur RP avec :
 
 - messages d'arrivee et de depart en Component V2 ;
 - carte visuelle avec l'avatar du membre dans le cercle bleu ;
-- assistant IA Grok limite a un seul salon ;
+- assistant IA Groq limite a un seul salon ;
 - support vocal avec message de synthese vocale quand un membre rejoint le vocal d'attente ;
 - presence Discord en stream sur `Gendarmerie` ;
 - configuration par variables Railway et commande `/config`.
@@ -33,8 +33,8 @@ AI_CHANNEL_ID=id_salon_assistant_ia
 SUPPORT_WAITING_VOICE_ID=id_vocal_attente_de_move
 SUPPORT_LOG_CHANNEL_ID=id_salon_logs_support_optionnel
 
-GROK_API_KEY=ta_cle_api_grok
-GROK_MODEL=grok-4
+GROQ_API_KEY=ta_cle_api_groq_gratuite
+GROQ_MODEL=llama-3.1-8b-instant
 
 BOT_STREAM_NAME=Gendarmerie
 WELCOME_MESSAGE=Bienvenue {user} au sein de la Gendarmerie Nationale RP.

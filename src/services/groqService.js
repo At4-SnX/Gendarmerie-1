@@ -1,22 +1,22 @@
 const { fetch } = require("undici");
 const { getConfig } = require("../config");
 
-async function askGrok({ authorName, content }) {
+async function askGroq({ authorName, content }) {
   const config = getConfig();
-  if (!config.grokApiKey) {
-    return "La cle API Grok n'est pas configuree. Ajoute GROK_API_KEY sur Railway.";
+  if (!config.groqApiKey) {
+    return "La cle API Groq n'est pas configuree. Ajoute GROQ_API_KEY sur Railway.";
   }
 
-  const response = await fetch("https://api.x.ai/v1/chat/completions", {
+  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${config.grokApiKey}`,
+      Authorization: `Bearer ${config.groqApiKey}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: config.grokModel,
+      model: config.groqModel,
       messages: [
-        { role: "system", content: config.grokSystemPrompt },
+        { role: "system", content: config.groqSystemPrompt },
         {
           role: "user",
           content: `Utilisateur Discord: ${authorName}\nMessage: ${content}`
@@ -29,7 +29,7 @@ async function askGrok({ authorName, content }) {
 
   if (!response.ok) {
     const details = await response.text().catch(() => "");
-    throw new Error(`Grok API ${response.status}: ${details.slice(0, 500)}`);
+    throw new Error(`Groq API ${response.status}: ${details.slice(0, 500)}`);
   }
 
   const data = await response.json();
@@ -37,5 +37,5 @@ async function askGrok({ authorName, content }) {
 }
 
 module.exports = {
-  askGrok
+  askGroq
 };

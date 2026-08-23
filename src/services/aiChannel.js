@@ -1,6 +1,6 @@
 const { getConfig } = require("../config");
 const { buildComponentMessage } = require("./componentService");
-const { askGrok } = require("./grokService");
+const { askGroq } = require("./groqService");
 const logger = require("../utils/logger");
 
 function splitResponse(text) {
@@ -23,7 +23,7 @@ async function handleAiMessage(message) {
   await message.channel.sendTyping().catch(() => null);
 
   try {
-    const answer = await askGrok({
+    const answer = await askGroq({
       authorName: message.member?.displayName || message.author.username,
       content: message.content.trim()
     });
@@ -34,7 +34,7 @@ async function handleAiMessage(message) {
         buildComponentMessage({
           title: index === 0 ? "Assistant IA" : "Assistant IA - suite",
           body: chunk,
-          footer: "Gendarmerie Nationale RP - Assistant Grok"
+          footer: "Gendarmerie Nationale RP - Assistant Groq"
         })
       );
     }
@@ -43,8 +43,8 @@ async function handleAiMessage(message) {
     await message.reply(
       buildComponentMessage({
         title: "Assistant indisponible",
-        body: "L'assistant IA ne peut pas repondre pour le moment. Verifie la cle Grok et le modele configure.",
-        footer: "Gendarmerie Nationale RP - Assistant Grok"
+        body: "L'assistant IA ne peut pas repondre pour le moment. Verifie la cle Groq et le modele configure.",
+        footer: "Gendarmerie Nationale RP - Assistant Groq"
       })
     );
   }
