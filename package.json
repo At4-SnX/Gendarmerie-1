@@ -1,0 +1,21 @@
+{
+  "name": "gendarmerie-rp-bot",
+  "version": "1.0.0",
+  "description": "Bot Discord professionnel pour une Gendarmerie Nationale RP.",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "deploy:commands": "node src/deploy-commands.js"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "dependencies": {
+    "@discordjs/voice": "^0.19.2",
+    "@napi-rs/canvas": "^0.1.69",
+    "discord.js": "^14.20.0",
+    "dotenv": "^16.4.5",
+    "undici": "^6.19.8"
+  }
+}
