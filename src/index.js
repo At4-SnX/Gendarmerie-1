@@ -9,6 +9,8 @@ const { getConfig } = require("./config");
 const { handleAiMessage } = require("./services/aiChannel");
 const { handleInteraction, setPresence } = require("./services/interactionHandler");
 const { sendMemberMessage } = require("./services/memberEvents");
+const { handlePrefixCommand } = require("./services/prefixCommands");
+const { auditEvents, handleAntiBot, handleAuditProtection } = require("./services/protectionService");
 const { connectToWaitingChannel, handleVoiceStateUpdate } = require("./services/voiceSupport");
 const logger = require("./utils/logger");
 
@@ -24,6 +26,7 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildModeration,
     GatewayIntentBits.GuildVoiceStates
   ],
   partials: [Partials.GuildMember, Partials.User]
@@ -37,7 +40,13 @@ client.once(Events.ClientReady, async () => {
   );
 });
 
-client.on(Events.GuildMemberAdd, (member) => {
+client.on(Events.GuildMemberAdd, async (member) => {
+  const blocked = await handleAntiBot(member).catch((error) => {
+    logger.error("Erreur anti-bot.", { error: error.message });
+    return false;
+  });
+  if (blocked) return;
+
   sendMemberMessage(member, "welcome");
 });
 
@@ -45,7 +54,13 @@ client.on(Events.GuildMemberRemove, (member) => {
   sendMemberMessage(member, "goodbye");
 });
 
-client.on(Events.MessageCreate, (message) => {
+client.on(Events.MessageCreate, async (message) => {
+  const handledCommand = await handlePrefixCommand(message).catch((error) => {
+    logger.error("Erreur commande prefix.", { error: error.message });
+    return false;
+  });
+  if (handledCommand) return;
+
   handleAiMessage(message);
 });
 
@@ -63,6 +78,40 @@ client.on(Events.InteractionCreate, (interaction) => {
 
 client.on(Events.VoiceStateUpdate, (oldState, newState) => {
   handleVoiceStateUpdate(oldState, newState);
+});
+
+client.on(Events.ChannelCreate, (channel) => {
+  if (channel.guild) {
+    handleAuditProtection(channel.guild, ...auditEvents.channelCreate).catch((error) =>
+      logger.error("Erreur anti-nuke.", { error: error.message })
+    );
+  }
+});
+
+client.on(Events.ChannelDelete, (channel) => {
+  if (channel.guild) {
+    handleAuditProtection(channel.guild, ...auditEvents.channelDelete).catch((error) =>
+      logger.error("Erreur anti-nuke.", { error: error.message })
+    );
+  }
+});
+
+client.on(Events.GuildRoleCreate, (role) => {
+  handleAuditProtection(role.guild, ...auditEvents.roleCreate).catch((error) =>
+    logger.error("Erreur anti-nuke.", { error: error.message })
+  );
+});
+
+client.on(Events.GuildRoleDelete, (role) => {
+  handleAuditProtection(role.guild, ...auditEvents.roleDelete).catch((error) =>
+    logger.error("Erreur anti-nuke.", { error: error.message })
+  );
+});
+
+client.on(Events.GuildBanAdd, (ban) => {
+  handleAuditProtection(ban.guild, ...auditEvents.guildBanAdd).catch((error) =>
+    logger.error("Erreur anti-nuke.", { error: error.message })
+  );
 });
 
 client.on(Events.Error, (error) => {

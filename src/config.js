@@ -24,6 +24,12 @@ const defaults = {
   supportTtsLang: process.env.SUPPORT_TTS_LANG || "fr",
   botStreamName: process.env.BOT_STREAM_NAME || "Gendarmerie",
   botStatusText: process.env.BOT_STATUS_TEXT || "Gendarmerie Nationale RP",
+  prefix: process.env.PREFIX || "&",
+  antiBotEnabled: process.env.ANTIBOT_ENABLED === "true",
+  antiNukeEnabled: process.env.ANTINUKE_ENABLED === "true",
+  antiNukeThreshold: Number(process.env.ANTINUKE_THRESHOLD || 3),
+  antiNukeWindowMs: Number(process.env.ANTINUKE_WINDOW_MS || 10_000),
+  antiNukeAction: process.env.ANTINUKE_ACTION || "strip",
   groqModel: process.env.GROQ_MODEL || "openai/gpt-oss-20b",
   groqSystemPrompt:
     process.env.GROQ_SYSTEM_PROMPT ||

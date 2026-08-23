@@ -7,6 +7,8 @@ Bot Discord professionnel pour serveur RP avec :
 - assistant IA Groq limite a un seul salon ;
 - support vocal avec message de synthese vocale quand un membre rejoint le vocal d'attente ;
 - presence Discord en stream sur `Gendarmerie` ;
+- commandes moderation en slash et avec prefix `&` ;
+- anti-bot et anti-nuke configurables ;
 - configuration par variables Railway et commande `/config`.
 
 ## Installation locale
@@ -37,6 +39,12 @@ GROQ_API_KEY=ta_cle_api_groq_gratuite
 GROQ_MODEL=openai/gpt-oss-20b
 
 BOT_STREAM_NAME=Gendarmerie
+PREFIX=&
+ANTIBOT_ENABLED=false
+ANTINUKE_ENABLED=false
+ANTINUKE_THRESHOLD=3
+ANTINUKE_WINDOW_MS=10000
+ANTINUKE_ACTION=strip
 WELCOME_MESSAGE=Bienvenue {user} au sein de la Gendarmerie Nationale RP.
 GOODBYE_MESSAGE={user} quitte la Gendarmerie Nationale RP. Bonne continuation.
 SUPPORT_TTS_MESSAGE=Bonjour {user}, un membre de la gendarmerie va vous prendre en charge. Merci de patienter dans le salon attente de move.
@@ -63,8 +71,20 @@ Commandes disponibles :
 - `/config texte`
 - `/config salon`
 - `/config stream`
+- `/ping` ou `&ping`
+- `/help` ou `&help`
+- `/kick` ou `&kick <id/mention> [raison]`
+- `/ban` ou `&ban <id/mention> [raison]`
+- `/mute` ou `&mute <id/mention> [10m|2h|1d] [raison]`
+- `/unmute` ou `&unmute <id/mention>`
+- `/clear` ou `&clear [1-100]`
+- `/lock` ou `&lock`
+- `/unlock` ou `&unlock`
+- `/slowmode` ou `&slowmode <secondes>`
+- `/antibot` ou `&antibot on/off`
+- `/antinuke` ou `&antinuke on/off [seuil] [strip|kick|ban]`
 
-La commande demande la permission Discord `Gerer le serveur`.
+Les commandes de moderation et de configuration demandent la permission Discord `Administrateur`.
 
 ## Configuration Discord obligatoire
 
@@ -81,6 +101,13 @@ Pour l'invitation du bot, prevois au minimum :
 - Send Messages ;
 - Use Slash Commands ;
 - Attach Files ;
+- Manage Messages ;
+- Manage Channels ;
+- Kick Members ;
+- Ban Members ;
+- Moderate Members ;
+- View Audit Log ;
+- Manage Roles, necessaire si l'action anti-nuke est `strip` ;
 - Connect ;
 - Speak ;
 - Use Voice Activity.

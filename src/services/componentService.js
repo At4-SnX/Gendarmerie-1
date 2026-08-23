@@ -23,7 +23,7 @@ function buildFallback({ title, body, imageName, attachment, footer }) {
     .setColor(blue)
     .setTitle(title)
     .setDescription(body)
-    .setFooter({ text: footer || "Gendarmerie Nationale" });
+    .setFooter({ text: footer || "Gendarmerie Nationale RP" });
 
   if (imageName) embed.setImage(`attachment://${imageName}`);
 
@@ -60,7 +60,7 @@ function buildComponentMessage({ title, body, imageName, attachment, footer, but
         .setSpacing(SeparatorSpacingSize?.Small ?? 1)
     )
     .addTextDisplayComponents(
-      new TextDisplayBuilder().setContent(`*${footer || "Gendarmerie Nationale"}*`)
+      new TextDisplayBuilder().setContent(`*${footer || "Gendarmerie Nationale RP"}*`)
     );
 
   const components = [container];
