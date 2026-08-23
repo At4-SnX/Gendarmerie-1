@@ -37,7 +37,7 @@ async function handleConfigCommand(interaction) {
           `Logs support: ${channelMention(config.supportLogChannelId)}`,
           `Stream: **${config.botStreamName}**`
         ].join("\n"),
-        footer: "Gendarmerie Nationale RP - Administration"
+        footer: "Gendarmerie Nationale - Administration"
       }),
       ephemeral: true
     });
@@ -53,7 +53,7 @@ async function handleConfigCommand(interaction) {
       ...buildComponentMessage({
         title: "Texte mis a jour",
         body: `Le reglage \`${key}\` a ete modifie.`,
-        footer: "Gendarmerie Nationale RP - Administration"
+        footer: "Gendarmerie Nationale - Administration"
       }),
       ephemeral: true
     });
@@ -73,7 +73,7 @@ async function handleConfigCommand(interaction) {
       ...buildComponentMessage({
         title: "Salon mis a jour",
         body: `Le reglage \`${key}\` utilise maintenant ${channel}.`,
-        footer: "Gendarmerie Nationale RP - Administration"
+        footer: "Gendarmerie Nationale - Administration"
       }),
       ephemeral: true
     });
@@ -89,7 +89,7 @@ async function handleConfigCommand(interaction) {
       ...buildComponentMessage({
         title: "Stream mis a jour",
         body: `Le stream du bot est maintenant **${name}**.`,
-        footer: "Gendarmerie Nationale RP - Administration"
+        footer: "Gendarmerie Nationale - Administration"
       }),
       ephemeral: true
     });

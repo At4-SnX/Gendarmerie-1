@@ -34,7 +34,7 @@ SUPPORT_WAITING_VOICE_ID=id_vocal_attente_de_move
 SUPPORT_LOG_CHANNEL_ID=id_salon_logs_support_optionnel
 
 GROQ_API_KEY=ta_cle_api_groq_gratuite
-GROQ_MODEL=llama-3.1-8b-instant
+GROQ_MODEL=openai/gpt-oss-20b
 
 BOT_STREAM_NAME=Gendarmerie
 WELCOME_MESSAGE=Bienvenue {user} au sein de la Gendarmerie Nationale RP.

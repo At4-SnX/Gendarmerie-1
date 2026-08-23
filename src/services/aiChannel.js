@@ -32,9 +32,9 @@ async function handleAiMessage(message) {
     for (const [index, chunk] of chunks.entries()) {
       await message.reply(
         buildComponentMessage({
-          title: index === 0 ? "Assistant IA" : "Assistant IA - suite",
+          title: index === 0 ? "<:Eng:1541201441627054160> ASSISTANT IA" : "<:Eng:1541201441627054160> ASSISTANT IA - suite",
           body: chunk,
-          footer: "Gendarmerie Nationale RP - Assistant Groq"
+          footer: "Gendarmerie Nationale - Notre assistant IA peut faire des erreurs. Vérifiez les informations importantes."
         })
       );
     }

@@ -24,7 +24,7 @@ const defaults = {
   supportTtsLang: process.env.SUPPORT_TTS_LANG || "fr",
   botStreamName: process.env.BOT_STREAM_NAME || "Gendarmerie",
   botStatusText: process.env.BOT_STATUS_TEXT || "Gendarmerie Nationale RP",
-  groqModel: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
+  groqModel: process.env.GROQ_MODEL || "openai/gpt-oss-20b",
   groqSystemPrompt:
     process.env.GROQ_SYSTEM_PROMPT ||
     "Tu es l'assistant officiel de la Gendarmerie Nationale RP. Reponds de facon professionnelle, courte et utile. Reste dans le cadre RP.",

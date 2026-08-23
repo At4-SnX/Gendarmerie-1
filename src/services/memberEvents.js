@@ -12,11 +12,11 @@ async function sendMemberMessage(member, mode) {
   if (!channel?.isTextBased()) return;
 
   const template = mode === "welcome" ? config.welcomeMessage : config.goodbyeMessage;
-  const title = mode === "welcome" ? "Nouvelle arrivee" : "Depart signale";
+  const title = mode === "welcome" ? "<:exc:1541214048341852342> BIENVENUE" : "<:exc:1541214048341852342> AUREVOIR";
   const footer =
     mode === "welcome"
-      ? "Gendarmerie Nationale RP - Accueil"
-      : "Gendarmerie Nationale RP - Effectifs";
+      ? "Gendarmerie Nationale - « Notre engagement, votre sécurité »"
+      : "Gendarmerie Nationale - « Notre engagement, votre sécurité »";
 
   try {
     const { attachment, fileName } = await createMemberCard(member, mode);
