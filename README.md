@@ -87,7 +87,7 @@ Pour l'invitation du bot, prevois au minimum :
 
 ## Railway
 
-Le projet contient `nixpacks.toml` pour installer Node.js 20 et `ffmpeg`, necessaire au support vocal TTS.
+Le projet contient `nixpacks.toml` pour installer Node.js 20. Le bot embarque aussi `ffmpeg-static`, ce qui evite l'erreur `FFmpeg/avconv not found!` sur Railway pendant le support vocal TTS.
 
 Sur Railway :
 
